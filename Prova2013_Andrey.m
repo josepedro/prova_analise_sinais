@@ -8,117 +8,117 @@
 % $$$$ Rodar em separado cada questão! (Ctrl+Enter)$$$$
 
 %% *********************** Questão 1 *********************************
-clear all
-close all
-N = 20;                  % Número de pontos
-T = 2*pi;                % Tempo de medição
-fs = N/T;                % Frequencia de amostragem
-t = 0 : 1/fs : T-1/fs;   % Vetor do tempo
-
-% Definindo o vetor x (discretizado)
-x(1:N/4)       = 2.5;  % 2,5,  0      < t < pi/4
-x(N/4+1:N/2)   = -0.5; % -0,5, pi/2   < t < pi
-x(N/2+1:3*N/4) = 0.5;  % 0,5,  pi     < t < 3*pi/4
-x(3*N/4 + 1:N) = -2.5; % -2,5, 3*pi/4 < t < 2*pi
-
-X = fft(x); % DFT de x
-ck = X/N;   % Coefeicientes da série de fourier eq.(3.45) do livro do Shin
-
-% a)-----------------------------------------------------------------------
-Coeficientes = ck(2:11); % 10 primeiros coeficientes da série
-% b)-----------------------------------------------------------------------
-f = fs*(0:N-1)/N; % Definição vetor de frequencia
-
-figure
-subplot(2,2,1)
-stem(f(1:10),abs(ck(1:10)),'fill')
-grid on
-xlabel('Frequencia [Hz]')
-ylabel('Magnitude')
-title('Gráfico de Magnitude')
-
-subplot(2,2,2)
-stem(f(1:10),angle(ck(1:10)),'fill')
-grid on
-xlabel('Frequencia [Hz]')
-ylabel('Fase [rad]')
-title('Gráfico de Fase')
-
-% c)-----------------------------------------------------------------------
-% Definindo o vetor x referência da função
-n = 1000;                    % utilizando mais pontos para ficar melhor discretizado no gráfico
-x_ref(1:n/4)       = 2.5;
-x_ref(n/4+1:n/2)   = -0.5;
-x_ref(n/2+1:3*n/4) = 0.5;
-x_ref(3*n/4 + 1:n) = -2.5;
-t_ref = linspace(0,2*pi,n);
-
-% x_n = abs(ifft([Coeficientes zeros(1,N-length(Coeficientes))])*N);
-
-% Utiliza-se a eq.(3.34) para calcular a função com os 10 primeiros termos da série de fourier
-x_n2 = zeros(1,N);
-for n = 1:10 
-    x_n2 = x_n2 + ck(n+1)*exp(1i*2*pi*n*t/T);
-end
-
-subplot(2,2,3)
-plot(t_ref,x_ref) % plota a função no tempo
-hold on
-% plot(t,x_n, 'ro-', 'MarkerFaceColor','r')
-plot(t,2*x_n2, 'ro-', 'MarkerFaceColor','r') % plota a série com os 10 primeiros termos
-grid on
-legend('Sinal x(t)', 'Série de Fourier com 10 termos')
-xlim([0 2*pi])
-xlabel('Tempo [s]')
-ylabel('x(t)')
-title('Comparação função no tempo com a série de Fourier')
-
-%% *********************** Questão 2 *********************************
 % clear all
 % close all
-% % wintool(sigwin.parzenwin(100),sigwin.rectwin(100))
+% N = 20;                  % Número de pontos
+% T = 2*pi;                % Tempo de medição
+% fs = N/T;                % Frequencia de amostragem
+% t = 0 : 1/fs : T-1/fs;   % Vetor do tempo
 
-% T      = 1;    % Largura da janela
-% fs     = 100;  % Frequencia de amostragem [Hz]
-% N      = fs*T; % Numero de pontos da janela
-% % Fmax = FS/2;    % Corresponde a maxima frequencia no sinal
-% % k = -N/2:(N/2)-1; % Representa o tempo  de -512 amostras a +511 amostras
+% % Definindo o vetor x (discretizado)
+% x(1:N/4)       = 2.5;  % 2,5,  0      < t < pi/4
+% x(N/4+1:N/2)   = -0.5; % -0,5, pi/2   < t < pi
+% x(N/2+1:3*N/4) = 0.5;  % 0,5,  pi     < t < 3*pi/4
+% x(3*N/4 + 1:N) = -2.5; % -2,5, 3*pi/4 < t < 2*pi
 
-% % Janela Retangular
-% w_rect = rectwin(N)';
+% X = fft(x); % DFT de x
+% ck = X/N;   % Coefeicientes da série de fourier eq.(3.45) do livro do Shin
 
-% % Janela Parzen
-% w_par  = parzenwin(N)';         % Já está normalizada
-% % w_par_norm = w_par/max(w_par); % Normalização da janela parzen pelo maior valor dentro do vetor w
+% % a)-----------------------------------------------------------------------
+% Coeficientes = ck(2:11); % 10 primeiros coeficientes da série
+% % b)-----------------------------------------------------------------------
+% f = fs*(0:N-1)/N; % Definição vetor de frequencia
 
-% % % Janela Parzen no dominio da frequencia em dB
-% W     = abs(fft([w_par zeros(1,10*N)])); % DFT com zeropadding
-% W_par = 20*log10(W/W(1)); % ou max(W)
+% figure
+% subplot(2,2,1)
+% stem(f(1:10),abs(ck(1:10)),'fill')
+% grid on
+% xlabel('Frequencia [Hz]')
+% ylabel('Magnitude')
+% title('Gráfico de Magnitude')
 
-% f = fs*(0:11*N-1)/(11*N); % Definição vetor de frequencia
+% subplot(2,2,2)
+% stem(f(1:10),angle(ck(1:10)),'fill')
+% grid on
+% xlabel('Frequencia [Hz]')
+% ylabel('Fase [rad]')
+% title('Gráfico de Fase')
 
-% % Janela retangular no dominio da frequencia em dB
-% Wr = fft([w_rect zeros(1,10*N)]);
-% W_rect = 20*log10(Wr/max(Wr));
-% Wr_abs = abs(W_rect);
+% % c)-----------------------------------------------------------------------
+% % Definindo o vetor x referência da função
+% n = 1000;                    % utilizando mais pontos para ficar melhor discretizado no gráfico
+% x_ref(1:n/4)       = 2.5;
+% x_ref(n/4+1:n/2)   = -0.5;
+% x_ref(n/2+1:3*n/4) = 0.5;
+% x_ref(3*n/4 + 1:n) = -2.5;
+% t_ref = linspace(0,2*pi,n);
 
-% for idx = 1:length(W_rect); % Substitui -inf por -200 no vetor W_rect
-%     if W_rect(idx) == -inf
-%         W_rect(idx) = -150;
-%     end
+% % x_n = abs(ifft([Coeficientes zeros(1,N-length(Coeficientes))])*N);
+
+% % Utiliza-se a eq.(3.34) para calcular a função com os 10 primeiros termos da série de fourier
+% x_n2 = zeros(1,N);
+% for n = 1:10 
+%     x_n2 = x_n2 + ck(n+1)*exp(1i*2*pi*n*t/T);
 % end
 
-% % Plotando os resultados
-% figure
-% plot(f,W_rect,'LineWidth',2)    % Plota janela retangular
+% subplot(2,2,3)
+% plot(t_ref,x_ref) % plota a função no tempo
 % hold on
-% plot(f,W_par,'r','LineWidth',2) % Plota janela Parzen
-% axis([0 10 -150 10])
+% % plot(t,x_n, 'ro-', 'MarkerFaceColor','r')
+% plot(t,2*x_n2, 'ro-', 'MarkerFaceColor','r') % plota a série com os 10 primeiros termos
 % grid on
-% ylabel('Atenuação (dB)')
-% xlabel('Frequência [Hz]')
-% title('Comparação das janelas')
-% legend('Janela Retangular', 'Janela Parzen')
+% legend('Sinal x(t)', 'Série de Fourier com 10 termos')
+% xlim([0 2*pi])
+% xlabel('Tempo [s]')
+% ylabel('x(t)')
+% title('Comparação função no tempo com a série de Fourier')
+
+%% *********************** Questão 2 *********************************
+clear all
+close all
+% wintool(sigwin.parzenwin(100),sigwin.rectwin(100))
+
+T      = 1;    % Largura da janela
+fs     = 100;  % Frequencia de amostragem [Hz]
+N      = fs*T; % Numero de pontos da janela
+% Fmax = FS/2;    % Corresponde a maxima frequencia no sinal
+% k = -N/2:(N/2)-1; % Representa o tempo  de -512 amostras a +511 amostras
+
+% Janela Retangular
+w_rect = rectwin(N)';
+
+% Janela Parzen
+w_par  = parzenwin(N)';         % Já está normalizada
+% w_par_norm = w_par/max(w_par); % Normalização da janela parzen pelo maior valor dentro do vetor w
+
+% % Janela Parzen no dominio da frequencia em dB
+W     = abs(fft([w_par zeros(1,10*N)])); % DFT com zeropadding
+W_par = 20*log10(W/W(1)); % ou max(W)
+
+f = fs*(0:11*N-1)/(11*N); % Definição vetor de frequencia
+
+% Janela retangular no dominio da frequencia em dB
+Wr = fft([w_rect zeros(1,10*N)]);
+W_rect = 20*log10(Wr/max(Wr));
+Wr_abs = abs(W_rect);
+
+for idx = 1:length(W_rect); % Substitui -inf por -200 no vetor W_rect
+    if W_rect(idx) == -inf
+        W_rect(idx) = -150;
+    end
+end
+
+% Plotando os resultados
+figure
+plot(f,W_rect,'LineWidth',2)    % Plota janela retangular
+hold on
+plot(f,W_par,'r','LineWidth',2) % Plota janela Parzen
+axis([0 10 -150 10])
+grid on
+ylabel('Atenuação (dB)')
+xlabel('Frequência [Hz]')
+title('Comparação das janelas')
+legend('Janela Retangular', 'Janela Parzen')
 
 
 % % -> Explique as diferenças observadas entre cada janela e a vantagem e desvantagem de cada uma.
