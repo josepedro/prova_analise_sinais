@@ -3,7 +3,7 @@ clear('all'); close all; clc;
 
 questao_1();
 
-
+% Questao 2
 tempo_total = 1;
 frequencia_amostragem = 100;  % [Hz]
 numero_total_pontos = frequencia_amostragem*tempo_total;
