@@ -1,7 +1,13 @@
 % Prova de Analise de Sinais
-clear('all'); close all; clc;
+currentCharacterEncoding = slCharacterEncoding()
+slCharacterEncoding('UTF-8');
+clear('all'); clc;
 
+close all;
 questao_1();
 
 close all;
 questao_2();
+
+close all;
+questao_3();
