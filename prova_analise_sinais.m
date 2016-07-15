@@ -11,11 +11,10 @@ frequencias = frequencia_amostragem*(0:11*numero_total_pontos-1)/(11*numero_tota
 
 janela_retangular = rectwin(numero_total_pontos)';
 
-
 janela_analisada  = blackman(numero_total_pontos)';
 
 janela_analisada_frequencia_dB = abs(fft([janela_analisada zeros(1,10*numero_total_pontos)])); % DFT com zeropadding
-janela_analisada_frequencia_dB = 20*log10(janela_analisada_frequencia_dB/janela_analisada_frequencia_dB(1)); % ou max(W)
+janela_analisada_frequencia_dB = 20*log10(janela_analisada_frequencia_dB/max(janela_analisada_frequencia_dB)); % ou max(W)
 
 janela_retangular_frequencia_dB = abs(fft([janela_retangular zeros(1,10*numero_total_pontos)]));
 janela_retangular_frequencia_dB = 20*log10(janela_retangular_frequencia_dB/max(janela_retangular_frequencia_dB));

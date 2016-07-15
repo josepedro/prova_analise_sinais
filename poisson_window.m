@@ -1,4 +1,4 @@
-function w = hannpoisswin(n,alpha)
+function w = poisson_window(n,alpha)
 
 % HANNPOISSWIN Symmetric Hanning-Poisson window
 %    HANNPOISSWIN(N,ALPHA) returns a symmetric N point Hanning-
