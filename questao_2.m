@@ -9,7 +9,7 @@ function questao_2 = questao_2()
 	janela_retangular = rectwin(numero_total_pontos)';
 	janela_retangular_frequencia_dB = abs(fft([janela_retangular zeros(1,10*numero_total_pontos)]));
 	janela_retangular_frequencia_dB = 20*log10(janela_retangular_frequencia_dB/max(janela_retangular_frequencia_dB));
-	for idx = 1:length(janela_retangular_frequencia_dB); % Substitui -inf por -200 no vetor W_rect
+	for idx = 1:length(janela_retangular_frequencia_dB);
 	    if janela_retangular_frequencia_dB(idx) == -inf
 	        janela_retangular_frequencia_dB(idx) = -150;
 	    end
