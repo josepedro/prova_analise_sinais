@@ -29,11 +29,11 @@ function questao_1 = questao_1()
 	sinal_x_t(numero_total_pontos/2+1:3*numero_total_pontos/4) = 0.5;  % 0,5,  pi < t < 3*pi/4
 	sinal_x_t(3*numero_total_pontos/4 + 1:numero_total_pontos) = -2.5; % -2,5, 3*pi/4 < t < 2*pi
 
-	figure; stem(tempos_periodo, sinal_x_t);
+	%figure; stem(tempos_periodo, sinal_x_t);
 
 	% a) 10 primeiros coeficientes da Serie de Fourier na forma discreta com DFT
 	coeficientes_serie_fourier = fft(sinal_x_t)/numero_total_pontos;
-	coeficientes_serie_fourier = coeficientes_serie_fourier(1:10);
+	coeficientes_serie_fourier = coeficientes_serie_fourier(1:10)
 
 	% b) Espectros de magnitude e fase
 	frequencias = (frequencia_amostragem/numero_total_pontos) ... 
@@ -52,3 +52,31 @@ function questao_1 = questao_1()
 	end
 	figure; stem(tempos_periodo, sinal_x_t); hold on;
 	stem(tempos_periodo, real(sinal_x_t_reconstruido), 'red');
+
+
+	% figure(1);
+	% subplot(2,1,1);
+	% semilogy(frequencias_excitacao, abs(A_22), 'black');
+	% set(findobj(gca,'type','line'), 'LineWidth', 3);
+	% hold on;
+	% semilogy(frequencias_excitacao, abs(A_22_sem_amortecimento), 'blue');
+	% title( ... 
+	% 'Modulo da Acelerancia numa Excitacao em 2 e Resposta em 2', ... 
+	% 'Interpreter','latex','FontSize',16);
+	% xlabel('Frequencias [Hz]','Interpreter','latex','FontSize',16); 
+	% ylabel('Magnitude','Interpreter','latex','FontSize',16);
+	% legend('Com Amortecimento','Sem Amortecimento');
+	% axis([10 250 min(abs(A_22_sem_amortecimento)) 1.1*max(abs(A_22_sem_amortecimento))]);
+	% %
+	% subplot(2,1,2);
+	% plot(frequencias_excitacao, angle(A_22), 'black');
+	% set(findobj(gca,'type','line'), 'LineWidth', 3);
+	% hold on;
+	% plot(frequencias_excitacao, angle(A_22_sem_amortecimento), 'blue');
+	% title( ... 
+	% 'Fase da Acelerancia numa Excitacao em 2 e Resposta em 2', ... 
+	% 'Interpreter','latex','FontSize',16);
+	% xlabel('Frequencias [Hz]','Interpreter','latex','FontSize',16); 
+	% ylabel('Fase','Interpreter','latex','FontSize',16);
+	% legend('Com Amortecimento','Sem Amortecimento');
+	% axis([10 250 min(angle(A_22)) 1.1*max(angle(A_22_sem_amortecimento))]);
