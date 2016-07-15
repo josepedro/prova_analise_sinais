@@ -1,4 +1,19 @@
-%% questao_3: function description
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Universidade Federal de Santa Catarina.
+%% José Pedro de Santana Neto, maio de 2016
+%%
+%% You can redistribute it and/or
+%% modify it under the terms of the GNU Affero General Public License as
+%% published by the Free Software Foundation, either version 3 of the
+%% License, or (at your option) any later version.
+%% The library is distributed in the hope that it will be useful,
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%% GNU Affero General Public License for more details. 
+%% see <http://www.gnu.org/licenses/>.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Questao_3
 function questao_3 = questao_3()
 	
 	% A)
@@ -117,7 +132,7 @@ function questao_3 = questao_3()
 	plot(f_10,HdB_10,'g--','LineWidth',1.2)
 	plot(f_100,HdB_100,'r:','LineWidth',1.2)
 	xlim([0 60])
-	k=legend('H_{ref}','H_{tempos_totais_medicao=1}','H_{tempos_totais_medicao=10}','H_{tempos_totais_medicao=100}');
+	k=legend('H_{ref}','H_{tempo\_total = 1}','H_{tempo\_total = 10}','H_{tempo\_total = 100}');
 	set(k,'FontSize',15)
 	title('FRF - H(j\omega)','Fontsize',15)
 	xlabel('Frequencia (Hz)','Fontsize',15)
@@ -148,8 +163,6 @@ function questao_3 = questao_3()
 	Sxx_100 = fft(Rxx_100);Sxy_100=fft(Rxy_100);H1_100=Sxy_100./Sxx_100;
 	H1_100=abs(H1_100/frequencia_amostragem);
 	f_100=linspace(0,180,length(Rxy_100));
-
-	%PLOtempos_totais_medicao 3(c)
 
 	figure(6)
 	subplot(1,3,1)
@@ -203,10 +216,7 @@ function questao_3 = questao_3()
 	H1_W_20 = Sxy_W_20./Sxx_W_20;
 	H1_W_20=abs(H1_W_20)/frequencia_amostragem;
 
-	%PLOtempos_totais_medicao 3(d)
-
 	figure(7)
-
 	subplot(1,3,1)
 	plot(f,HrefdB,'b','LineWidth',1.5)
 	hold on
