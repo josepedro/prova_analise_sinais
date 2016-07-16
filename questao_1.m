@@ -33,15 +33,11 @@ function questao_1 = questao_1()
 
 	% a) 10 primeiros coeficientes da Serie de Fourier na forma discreta com DFT
 	coeficientes_serie_fourier = fft(sinal_x_t)/numero_total_pontos;
-	coeficientes_serie_fourier = coeficientes_serie_fourier(1:10)
+	coeficientes_serie_fourier = coeficientes_serie_fourier(1:10);
 
 	% b) Espectros de magnitude e fase
 	frequencias = (frequencia_amostragem/numero_total_pontos) ... 
 	*(0:numero_total_pontos-1);
-	% magnitude
-	figure; stem(frequencias(1:length(coeficientes_serie_fourier)), abs(coeficientes_serie_fourier));
-	% fase
-	figure; stem(frequencias(1:length(coeficientes_serie_fourier)), angle(coeficientes_serie_fourier));
 
 	% c) Comparar funcao no tempo com os 10 termos
 	sinal_x_t_reconstruido(1:numero_total_pontos) = 0;
@@ -50,33 +46,31 @@ function questao_1 = questao_1()
 	    sinal_x_t_reconstruido = sinal_x_t_reconstruido + ... 
 	    coeficientes_serie_fourier(termo + 1)*exp(1i*2*pi*termo*tempos_periodo/tempo_medicao);
 	end
-	figure; stem(tempos_periodo, sinal_x_t); hold on;
-	stem(tempos_periodo, real(sinal_x_t_reconstruido), 'red');
 
+	figure(1)
+	subplot(2,1,1)
+	stem(frequencias(1:length(coeficientes_serie_fourier)), ... 
+		abs(coeficientes_serie_fourier),'MarkerFaceColor','b')
+	title('Espectro de Magnitude','Interpreter','latex','Fontsize',20)
+	xlabel('Frequencia [Hz]','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude','Interpreter','latex','Fontsize',20)
 
-	% figure(1);
-	% subplot(2,1,1);
-	% semilogy(frequencias_excitacao, abs(A_22), 'black');
-	% set(findobj(gca,'type','line'), 'LineWidth', 3);
-	% hold on;
-	% semilogy(frequencias_excitacao, abs(A_22_sem_amortecimento), 'blue');
-	% title( ... 
-	% 'Modulo da Acelerancia numa Excitacao em 2 e Resposta em 2', ... 
-	% 'Interpreter','latex','FontSize',16);
-	% xlabel('Frequencias [Hz]','Interpreter','latex','FontSize',16); 
-	% ylabel('Magnitude','Interpreter','latex','FontSize',16);
-	% legend('Com Amortecimento','Sem Amortecimento');
-	% axis([10 250 min(abs(A_22_sem_amortecimento)) 1.1*max(abs(A_22_sem_amortecimento))]);
-	% %
-	% subplot(2,1,2);
-	% plot(frequencias_excitacao, angle(A_22), 'black');
-	% set(findobj(gca,'type','line'), 'LineWidth', 3);
-	% hold on;
-	% plot(frequencias_excitacao, angle(A_22_sem_amortecimento), 'blue');
-	% title( ... 
-	% 'Fase da Acelerancia numa Excitacao em 2 e Resposta em 2', ... 
-	% 'Interpreter','latex','FontSize',16);
-	% xlabel('Frequencias [Hz]','Interpreter','latex','FontSize',16); 
-	% ylabel('Fase','Interpreter','latex','FontSize',16);
-	% legend('Com Amortecimento','Sem Amortecimento');
-	% axis([10 250 min(angle(A_22)) 1.1*max(angle(A_22_sem_amortecimento))]);
+	subplot(2,1,2)
+	stem(frequencias(1:length(coeficientes_serie_fourier)), ... 
+		angle(coeficientes_serie_fourier),'MarkerFaceColor','b')
+	title('Espectro de Fase','Interpreter','latex','Fontsize',20)
+	xlabel('Frequencia [Hz]','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude','Interpreter','latex','Fontsize',20)
+
+	figure(2)
+	stem(tempos_periodo, sinal_x_t)
+	hold on
+	stem(tempos_periodo, real(sinal_x_t_reconstruido),'red')
+	title('Sinal x(t)','Interpreter','latex','Fontsize',20)
+	xlabel('Tempo [s]','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude','Interpreter','latex','Fontsize',20)
+	xlim([0 2*pi])
+	set(gca,'XTick',0:pi/2:2*pi)
+	set(gca,'XTickLabel',{'0','\pi/2','\pi','3\pi/2','2\pi'},'FontSize',15)
+	k=legend('Sinal original','Serie de Fourier');
+	set(k,'Interpreter','latex','FontSize',20)

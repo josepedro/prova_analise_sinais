@@ -41,16 +41,16 @@ function questao_2 = questao_2()
 
 	tempos = (0:length(janela_retangular)-1)/frequencia_amostragem;
 
-	figure(2);
+	figure(3);
 	subplot(1,2,1);
 	plot(tempos, janela_retangular,'b','LineWidth',1.5);
 	hold on;
 	plot(tempos, janela_analisada_1,'r','LineWidth',1.5);
-	xlabel('Tempo (s)','Fontsize',15);
-	ylabel('Amplitude','Fontsize',15);
-	title('w(t)','Fontsize',15);
+	xlabel('Tempo (s)','Interpreter','latex','Fontsize',20);
+	ylabel('Amplitude','Interpreter','latex','Fontsize',20);
+	title('w(t)','Interpreter','latex','Fontsize',20);
 	k=legend('Janela Retangular','Janela Blackman','Location','south');
-	set(k,'FontSize',15);
+	set(k,'Interpreter','latex','Fontsize',20);
 	ylim([0 1.1]);
 	subplot(1,2,2);
 	plot(frequencias, janela_retangular_frequencia_dB,'LineWidth',1.5);
@@ -58,22 +58,22 @@ function questao_2 = questao_2()
 	plot(frequencias, janela_analisada_1_frequencia_dB,'r','LineWidth',1.5);
 	grid on;
 	axis([0 10 -150 0]);
-	title('|W(j\omega)|','Fontsize',15);
-	ylabel('Atenuação (dB)','Fontsize',15);
-	xlabel('Frequência (Hz)','Fontsize',15);
+	title('W','Interpreter','latex','Fontsize',20);
+	ylabel('Atenuacao (dB)','Interpreter','latex','Fontsize',20);
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20);
 	k=legend('Janela Retangular','Janela Blackman');
-	set(k,'FontSize',15);
+	set(k,'Interpreter','latex','Fontsize',20);
 
-	figure(3);
+	figure(4);
 	subplot(1,2,1);
 	plot(tempos, janela_retangular,'b','LineWidth',1.5);
 	hold on;
 	plot(tempos, janela_analisada_2, 'r','LineWidth',1.5);
-	xlabel('Tempo (s)','Fontsize',15);
-	ylabel('Amplitude','Fontsize',15);
-	title('w(t)','Fontsize',15);
+	xlabel('Tempo (s)','Interpreter','latex','Fontsize',20);
+	ylabel('Amplitude','Interpreter','latex','Fontsize',20);
+	title('w(t)','Interpreter','latex','Fontsize',20);
 	k=legend('Janela Retangular','Janela Poisson','Location','south');
-	set(k,'FontSize',15);
+	set(k,'Interpreter','latex','Fontsize',20);
 	ylim([0 1.1]);
 	subplot(1,2,2);
 	plot(frequencias, janela_retangular_frequencia_dB,'LineWidth',1.5);
@@ -81,8 +81,8 @@ function questao_2 = questao_2()
 	plot(frequencias, janela_analisada_2_frequencia_dB,'r','LineWidth',1.5);
 	grid on;
 	axis([0 10 -150 0]);
-	title('|W(j\omega)|','Fontsize',15);
-	ylabel('Atenuação (dB)','Fontsize',15);
-	xlabel('Frequência (Hz)','Fontsize',15);
+	title('W','Interpreter','latex','Fontsize',20);
+	ylabel('Atenuacao (dB)','Interpreter','latex','Fontsize',20);
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20);
 	k=legend('Janela Retangular','Janela Poisson');
-	set(k,'FontSize',15);
+	set(k,'Interpreter','latex','Fontsize',20);

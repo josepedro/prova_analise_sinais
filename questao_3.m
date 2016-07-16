@@ -109,34 +109,35 @@ function questao_3 = questao_3()
 	HdB_10 = 20*log10(abs(H_10));
 	HdB_100 = 20*log10(abs(H_100));
 	%PLOtempos_totais_medicao 3(a)
-	figure(4)
+	figure(5)
 	subplot(1,2,1)
 	plot(f,XdB)
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)','Fontsize',15)
-	title('Excitacao |X(j\omega)| - Ruido Branco','Fontsize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	title('Excitacao X - Ruido Branco','Interpreter','latex','Fontsize',20)
 	grid on
 	xlim([0 90])
 	subplot(1,2,2)
 	plot(f,YdB)
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)','Fontsize',15)
-	title('Resposta |Y(j\omega)|','Fontsize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	title('Resposta Y','Interpreter','latex','Fontsize',20)
 	grid on
 	xlim([0 90])
+	
 	%PLOtempos_totais_medicao 3(b)
-	figure(5)
+	figure(6)
 	plot(f,HrefdB,'b','LineWidth',3)
 	hold on
 	plot(f_1,HdB_1,'k-.','LineWidth',1.2)
 	plot(f_10,HdB_10,'g--','LineWidth',1.2)
 	plot(f_100,HdB_100,'r:','LineWidth',1.2)
 	xlim([0 60])
-	k=legend('H_{ref}','H_{tempo\_total = 1}','H_{tempo\_total = 10}','H_{tempo\_total = 100}');
-	set(k,'FontSize',15)
-	title('FRF - H(j\omega)','Fontsize',15)
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)','Fontsize',15)
+	k=legend('H referencia','H tempo\_total = 1','H tempo\_total = 10','H tempo\_total = 100');
+	set(k,'Interpreter','latex','Fontsize',20)
+	title('FRF - H','Interpreter','latex','Fontsize',20)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
 
 
 	% 3(c)
@@ -164,36 +165,36 @@ function questao_3 = questao_3()
 	H1_100=abs(H1_100/frequencia_amostragem);
 	f_100=linspace(0,180,length(Rxy_100));
 
-	figure(6)
+	figure(7)
 	subplot(1,3,1)
 	plot(f_1,20*log10(H1_1),'r')
 	hold on
 	plot(f,HrefdB,'b','LineWidth',1.5)
 	xlim([0 60])
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)', 'Fontsize',15)
-	k=legend('H1_{\tau(-1,1)}','H_{ref}');
-	set(k,'FontSize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	k=legend('H1 tau (-1,1)','H referencia');
+	set(k,'Interpreter','latex','Fontsize',20)
 
 	subplot(1,3,2)
 	plot(f_10,20*log10(H1_10),'r')
 	hold on
 	plot(f,HrefdB,'b','LineWidth',1.5)
 	xlim([0 60])
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)', 'Fontsize',15)
-	k=legend('H1_{\tau(-10,10)}','H_{ref}');
-	set(k,'FontSize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	k=legend('H1 tau (-10,10)','H referencia');
+	set(k,'Interpreter','latex','Fontsize',20)
 
 	subplot(1,3,3)
 	plot(f_100,20*log10(H1_100),'r')
 	hold on
 	plot(f,HrefdB,'b','LineWidth',1.5)
 	xlim([0 60])
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)', 'Fontsize',15)
-	k=legend('H1_{\tau(-100,100)}','H_{ref}');
-	set(k,'FontSize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	k=legend('H1 tau(-100,100)','H referencia');
+	set(k,'Interpreter','latex','Fontsize',20)
 
 	%3(d)
 	%Definindo um perido de janela tempos_totais_medicaor = [1 5 20] [s]
@@ -216,36 +217,36 @@ function questao_3 = questao_3()
 	H1_W_20 = Sxy_W_20./Sxx_W_20;
 	H1_W_20=abs(H1_W_20)/frequencia_amostragem;
 
-	figure(7)
+	figure(8)
 	subplot(1,3,1)
 	plot(f,HrefdB,'b','LineWidth',1.5)
 	hold on
 	plot(f,20*log10(H1_W_1),'r')
 	xlim([0 60])
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)', 'Fontsize',15)
-	k=legend('H_{ref}','H1_{rec = 1}');
-	set(k,'FontSize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	k=legend('H referencia','H1 retangular = 1');
+	set(k,'Interpreter','latex','Fontsize',20)
 
 	subplot(1,3,2)
 	plot(f,HrefdB,'b','LineWidth',1.5)
 	hold on
 	plot(f,20*log10(H1_W_5),'r')
 	xlim([0 60])
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)', 'Fontsize',15)
-	k=legend('H_{ref}','H1_{rec = 5}');
-	set(k,'FontSize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	k=legend('H referencia','H1 retangular = 5');
+	set(k,'Interpreter','latex','Fontsize',20)
 
 	subplot(1,3,3)
 	plot(f,HrefdB,'b','LineWidth',1.5)
 	hold on
 	plot(f,20*log10(H1_W_20),'r')
 	xlim([0 60])
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)', 'Fontsize',15)
-	k=legend('H_{ref}','H1_{rec = 20}');
-	set(k,'FontSize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	k=legend('H referencia','H1 retangular = 20');
+	set(k,'Interpreter','latex','Fontsize',20)
 
 	%3(e)
 	%Definindo um perido de janela tempos_totais_medicaor = [10] [s]
@@ -268,27 +269,27 @@ function questao_3 = questao_3()
 	H1_O_75 = Sxy_O_75./Sxx_O_75;
 	H1_O_75=abs(H1_O_75)/frequencia_amostragem;
 
-	figure(8)
+	figure(9)
 
 	subplot(1,3,1)
 	plot(f,HrefdB,'b','LineWidth',1.5)
 	hold on
 	plot(f,20*log10(H1_O_25),'r')
 	xlim([0 60])
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)', 'Fontsize',15)
-	k=legend('H_{ref}','H1_{overlap = 25%}');
-	set(k,'FontSize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	k=legend('H referencia','H1 overlap = 25\%');
+	set(k,'Interpreter','latex','Fontsize',20)
 
 	subplot(1,3,2)
 	plot(f,HrefdB,'b','LineWidth',1.5)
 	hold on
 	plot(f,20*log10(H1_O_50),'r')
 	xlim([0 60])
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)', 'Fontsize',15)
-	k=legend('H_{ref}','H1_{overlap = 50%}');
-	set(k,'FontSize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	k=legend('H referencia','H1 overlap = 50\%');
+	set(k,'Interpreter','latex','Fontsize',20)
 
 
 	subplot(1,3,3)
@@ -296,10 +297,10 @@ function questao_3 = questao_3()
 	hold on
 	plot(f,20*log10(H1_O_75),'r')
 	xlim([0 60])
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)', 'Fontsize',15)
-	k=legend('H_{ref}','H1_{overlap = 75%}');
-	set(k,'FontSize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	k=legend('H referencia','H1 overlap = 75\%');
+	set(k,'Interpreter','latex','Fontsize',20)
 
 	%3(f)
 
@@ -312,15 +313,15 @@ function questao_3 = questao_3()
 	A=corrcoef(HrefdB,H1_Rec);
 	A=abs(A(1,2));
 
-	Sxx_tempos_totais_medicaouk= cpsd(x,x, tukeywin(numero_total_pontosr_10), numero_total_pontosr_10/2, numero_total_pontos,frequencia_amostragem, 'twosided'); % Sxx utilizando o Método de Welch
-	Sxy_tempos_totais_medicaouk = cpsd(y,x, tukeywin(numero_total_pontosr_10), numero_total_pontosr_10/2, numero_total_pontos,frequencia_amostragem,'twosided'); % Sxy utilizando o Método de Welch
+	Sxx_tempos_totais_medicaouk= cpsd(x,x, blackman(numero_total_pontosr_10), numero_total_pontosr_10/2, numero_total_pontos,frequencia_amostragem, 'twosided'); % Sxx utilizando o Método de Welch
+	Sxy_tempos_totais_medicaouk = cpsd(y,x, blackman(numero_total_pontosr_10), numero_total_pontosr_10/2, numero_total_pontos,frequencia_amostragem,'twosided'); % Sxy utilizando o Método de Welch
 	H1_tempos_totais_medicaouk = Sxy_tempos_totais_medicaouk./Sxx_tempos_totais_medicaouk;
 	H1_tempos_totais_medicaouk=abs(H1_tempos_totais_medicaouk)/frequencia_amostragem;
 	B=corrcoef(HrefdB,H1_tempos_totais_medicaouk);
 	B=abs(B(1,2));
 
-	Sxx_tempos_totais_medicaorian = cpsd(x,x, triang(numero_total_pontosr_10), numero_total_pontosr_10/2, numero_total_pontos,frequencia_amostragem, 'twosided'); % Sxx utilizando o Método de Welch
-	Sxy_tempos_totais_medicaorian = cpsd(y,x, triang(numero_total_pontosr_10), numero_total_pontosr_10/2, numero_total_pontos,frequencia_amostragem,'twosided'); % Sxy utilizando o Método de Welch
+	Sxx_tempos_totais_medicaorian = cpsd(x,x, poisson_window(numero_total_pontosr_10,2), numero_total_pontosr_10/2, numero_total_pontos,frequencia_amostragem, 'twosided'); % Sxx utilizando o Método de Welch
+	Sxy_tempos_totais_medicaorian = cpsd(y,x, poisson_window(numero_total_pontosr_10,2), numero_total_pontosr_10/2, numero_total_pontos,frequencia_amostragem,'twosided'); % Sxy utilizando o Método de Welch
 	H1_tempos_totais_medicaorian = Sxy_tempos_totais_medicaorian./Sxx_tempos_totais_medicaorian;
 	H1_tempos_totais_medicaorian=abs(H1_tempos_totais_medicaorian)/frequencia_amostragem;
 	C=corrcoef(HrefdB,H1_tempos_totais_medicaorian);
@@ -329,30 +330,30 @@ function questao_3 = questao_3()
 	%PLOtempos_totais_medicao 3(f)
 	texto_correlacao_x = 123;
 	texto_correlacao_y = 11;
-	figure(9)
+	figure(10)
 	subplot(1,3,1)
 	plot(f,HrefdB,'b','LineWidth',1.5)
 	hold on
 	plot(f,20*log10(H1_Rec),'r')
 	strmax = ['Correlacao = ', num2str(A)];
-	text(45,-115,strmax,'HorizontalAlignment','right','Fontsize',13);
+	text(45,-115,strmax,'HorizontalAlignment','right','Interpreter','latex','Fontsize',20);
 	axis([0 60 -120 -40])
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)', 'Fontsize',15)
-	k=legend('H_{ref}','H1_{retangular}');
-	set(k,'FontSize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	k=legend('H referencia','H1 retangular');
+	set(k,'Interpreter','latex','Fontsize',20)
 
 	subplot(1,3,2)
 	plot(f,HrefdB,'b','LineWidth',1.5)
 	hold on
 	plot(f,20*log10(H1_tempos_totais_medicaouk),'r')
 	strmax = ['Correlacao = ', num2str(B)];
-	text(45,-105,strmax,'HorizontalAlignment','right','Fontsize',13);
+	text(45,-105,strmax,'HorizontalAlignment','right','Interpreter','latex','Fontsize',20);
 	xlim([0 60])
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)', 'Fontsize',15)
-	k=legend('H_{ref}','H1_{tukey}');
-	set(k,'FontSize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	k=legend('H referencia','H1 Blackman');
+	set(k,'Interpreter','latex','Fontsize',20)
 
 
 	subplot(1,3,3)
@@ -360,9 +361,9 @@ function questao_3 = questao_3()
 	hold on
 	plot(f,20*log10(H1_tempos_totais_medicaorian),'r')
 	strmax = ['Correlacao = ', num2str(C)];
-	text(45,-105,strmax,'HorizontalAlignment','right','Fontsize',13);
+	text(45,-105,strmax,'HorizontalAlignment','right','Interpreter','latex','Fontsize',20);
 	xlim([0 60])
-	xlabel('Frequencia (Hz)','Fontsize',15)
-	ylabel('Amplitude (dB)', 'Fontsize',15)
-	k=legend('H_{ref}','H1_{triangular}');
-	set(k,'FontSize',15)
+	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
+	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
+	k=legend('H referencia','H1 Poisson');
+	set(k,'Interpreter','latex','Fontsize',20)

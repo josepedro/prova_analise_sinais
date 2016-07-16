@@ -17,10 +17,10 @@
 clear('all'); clc;
 
 close all;
-questao_1();
+%questao_1();
 
 %close all;
 %questao_2();
 
 %close all;
-%questao_3();
+questao_3();
