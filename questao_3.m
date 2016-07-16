@@ -320,8 +320,8 @@ function questao_3 = questao_3()
 	B=corrcoef(HrefdB,H1_tempos_totais_medicaouk);
 	B=abs(B(1,2));
 
-	Sxx_tempos_totais_medicaorian = cpsd(x,x, poisson_window(numero_total_pontosr_10,2), numero_total_pontosr_10/2, numero_total_pontos,frequencia_amostragem, 'twosided'); % Sxx utilizando o Método de Welch
-	Sxy_tempos_totais_medicaorian = cpsd(y,x, poisson_window(numero_total_pontosr_10,2), numero_total_pontosr_10/2, numero_total_pontos,frequencia_amostragem,'twosided'); % Sxy utilizando o Método de Welch
+	Sxx_tempos_totais_medicaorian = cpsd(x,x, hann(numero_total_pontosr_10), numero_total_pontosr_10/2, numero_total_pontos,frequencia_amostragem, 'twosided'); % Sxx utilizando o Método de Welch
+	Sxy_tempos_totais_medicaorian = cpsd(y,x, hann(numero_total_pontosr_10), numero_total_pontosr_10/2, numero_total_pontos,frequencia_amostragem,'twosided'); % Sxy utilizando o Método de Welch
 	H1_tempos_totais_medicaorian = Sxy_tempos_totais_medicaorian./Sxx_tempos_totais_medicaorian;
 	H1_tempos_totais_medicaorian=abs(H1_tempos_totais_medicaorian)/frequencia_amostragem;
 	C=corrcoef(HrefdB,H1_tempos_totais_medicaorian);
@@ -365,5 +365,5 @@ function questao_3 = questao_3()
 	xlim([0 60])
 	xlabel('Frequencia (Hz)','Interpreter','latex','Fontsize',20)
 	ylabel('Amplitude (dB)','Interpreter','latex','Fontsize',20)
-	k=legend('H referencia','H1 Poisson');
+	k=legend('H referencia','H1 Hanning');
 	set(k,'Interpreter','latex','Fontsize',20)
